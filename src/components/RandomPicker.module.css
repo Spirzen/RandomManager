@@ -1,0 +1,151 @@
+.section {
+  width: 100%;
+}
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--accent-soft), transparent 55%);
+  pointer-events: none;
+}
+
+.btn {
+  position: relative;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 14px;
+  background: var(--random-gradient);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 8px 32px var(--accent-glow);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btnGlow {
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  animation: spin 4s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btnText {
+  position: relative;
+  z-index: 1;
+}
+
+.dice {
+  position: relative;
+  z-index: 1;
+  font-size: 1.25rem;
+}
+
+.display {
+  margin-top: 1.25rem;
+  min-height: 120px;
+  position: relative;
+  z-index: 1;
+}
+
+.flash {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal {
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--accent-2);
+  background: var(--accent-2-soft);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+.revealTitle {
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.revealMeta {
+  margin-top: 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.rating {
+  color: var(--warning);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.revealDesc {
+  margin-top: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 42rem;
+  margin-inline: auto;
+  line-height: 1.55;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.tag {
+  font-size: 0.72rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.hint {
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 0.9rem;
+}

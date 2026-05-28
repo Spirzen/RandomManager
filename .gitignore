@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+*.local
+.env
+.env.*
+
+# Локальная админка (не публикуется на GitHub Pages)
+admin/
+admin/node_modules/

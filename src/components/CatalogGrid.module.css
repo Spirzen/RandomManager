@@ -1,0 +1,58 @@
+.virtualRoot {
+  width: 100%;
+}
+
+.progress {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.progress strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.pendingLabel {
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.pending {
+  opacity: 0.92;
+}
+
+.virtualSpacer {
+  position: relative;
+  width: 100%;
+}
+
+.virtualRow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+.rowGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  background: var(--bg-elevated);
+}
+
+.emptyIcon {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.4;
+}

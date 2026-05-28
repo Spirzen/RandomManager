@@ -1,0 +1,167 @@
+.panel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.loadingHint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: -0.25rem 0 0;
+}
+
+.reset {
+  font-size: 0.8rem;
+  color: var(--accent);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+.reset:hover {
+  background: var(--accent-soft);
+}
+
+.field {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.legend {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.legendCount {
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.chipSearch {
+  width: 100%;
+  padding: 0.45rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  font-size: 0.8rem;
+  margin-bottom: 0.35rem;
+}
+
+.chipSearch:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.chipHint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.selectedChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border);
+}
+
+.selectedLabel {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.filtersDisabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  max-height: 140px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.chip {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  transition: all 0.15s;
+}
+
+.chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.chipActive {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.number {
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  width: 100%;
+}
+
+.number:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.rangeRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.range {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.rangeValue {
+  font-size: 0.85rem;
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+}

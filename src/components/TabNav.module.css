@@ -1,0 +1,53 @@
+.nav {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.35rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tab {
+  position: relative;
+  padding: 0.65rem 1.25rem;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+  z-index: 1;
+}
+
+.tab[aria-selected='true'] {
+  color: var(--text);
+}
+
+.tab:hover:not([aria-selected='true']) {
+  color: var(--text);
+}
+
+.pill {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  z-index: -1;
+}
+
+.tabContent {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+}
+
+.icon {
+  font-size: 1.1rem;
+}
