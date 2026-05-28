@@ -114,9 +114,6 @@ export function RandomPicker({
           <span className={styles.btnText}>
             {spinning ? 'Выбираем…' : labels.btn}
           </span>
-          <span className={styles.dice} aria-hidden>
-            🎲
-          </span>
         </button>
 
         <div className={styles.display}>

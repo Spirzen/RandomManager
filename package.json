@@ -16,6 +16,7 @@
     "dedupe:books": "node scripts/dedupe-books.mjs",
     "import:movies:top250": "node scripts/merge-top250-sources.mjs && node scripts/import-top250-kinopoisk.mjs && node scripts/import-tsv-top250.mjs",
     "import:movies:imdb-wiki": "node scripts/import-wikipedia-imdb-top250.mjs",
+    "fix:movies:genres": "node scripts/fix-movie-genres.mjs",
     "import:maindb": "node scripts/import-from-maindb.mjs"
   },
   "dependencies": {

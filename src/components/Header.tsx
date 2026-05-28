@@ -1,19 +1,28 @@
 import { motion } from 'framer-motion';
 import type { Theme } from '../hooks/useTheme';
+import type { CatalogKind } from '../types';
+import { TabNav } from './TabNav';
 import styles from './Header.module.css';
 
 interface HeaderProps {
   theme: Theme;
   onToggleTheme: () => void;
+  activeTab: CatalogKind;
+  onTabChange: (tab: CatalogKind) => void;
 }
 
-export function Header({ theme, onToggleTheme }: HeaderProps) {
+export function Header({
+  theme,
+  onToggleTheme,
+  activeTab,
+  onTabChange,
+}: HeaderProps) {
   return (
     <motion.header
       className={styles.header}
-      initial={{ y: -20, opacity: 0 }}
+      initial={{ y: -12, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className={styles.inner}>
         <div className={styles.brand}>
@@ -22,6 +31,11 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
           </span>
           <span className={styles.name}>RandomManager</span>
         </div>
+
+        <div className={styles.tabsWrap}>
+          <TabNav active={activeTab} onChange={onTabChange} />
+        </div>
+
         <button
           type="button"
           className={styles.themeBtn}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { RefObject } from 'react';
 
-const MIN_COL_WIDTH = 280;
+const MIN_COL_WIDTH = 260;
 const GAP_PX = 16;
 
 export function useGridColumns(containerRef: RefObject<HTMLElement | null>) {

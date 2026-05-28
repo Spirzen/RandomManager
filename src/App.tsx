@@ -1,6 +1,5 @@
 import { useMemo, useState, useTransition } from 'react';
 import { Header } from './components/Header';
-import { TabNav } from './components/TabNav';
 import { SearchBar } from './components/SearchBar';
 import { FilterPanel } from './components/FilterPanel';
 import { RandomPicker } from './components/RandomPicker';
@@ -57,18 +56,31 @@ export default function App() {
 
   return (
     <div className={appStyles.app}>
-      <Header theme={theme} onToggleTheme={toggle} />
+      <Header
+        theme={theme}
+        onToggleTheme={toggle}
+        activeTab={tab}
+        onTabChange={handleTabChange}
+      />
       <main className={appStyles.main}>
-        <section className={appStyles.hero}>
-          <h1 className={appStyles.heroTitle}>Что выбрать сегодня?</h1>
-          <p className={appStyles.heroSub}>
+        <header className={appStyles.pageIntro}>
+          <h1 className={appStyles.pageTitle}>Что выбрать сегодня?</h1>
+          <p className={appStyles.pageLead}>
             Каталог с поиском и фильтрами — и одна кнопка, чтобы решить за вас.
           </p>
-          <TabNav active={tab} onChange={handleTabChange} />
-        </section>
+        </header>
 
         <div className={appStyles.layout}>
-          <div className={appStyles.sidebar}>
+          <div className={appStyles.randomSlot}>
+            <RandomPicker
+              kind={tab}
+              items={items}
+              poolIndices={indices}
+              disabled={catalogLoading}
+            />
+          </div>
+
+          <aside className={appStyles.sidebar}>
             <FilterPanel
               kind={tab}
               filters={filters}
@@ -77,16 +89,9 @@ export default function App() {
               onChange={patchFilters}
               onReset={() => setFilters(emptyFilters())}
             />
-          </div>
+          </aside>
 
           <div className={appStyles.content}>
-            <RandomPicker
-              kind={tab}
-              items={items}
-              poolIndices={indices}
-              disabled={catalogLoading}
-            />
-
             <div className={appStyles.toolbar}>
               <SearchBar
                 value={filters.search}

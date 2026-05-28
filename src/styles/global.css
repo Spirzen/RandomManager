@@ -8,6 +8,7 @@
 
 :root,
 [data-theme='dark'] {
+  --header-offset: 6.75rem;
   --bg: #0a0b0f;
   --bg-elevated: #12141c;
   --bg-card: #161922;
@@ -30,6 +31,14 @@
   --gradient-hero: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(124, 92, 255, 0.35), transparent),
     radial-gradient(ellipse 60% 40% at 100% 0%, rgba(34, 211, 238, 0.12), transparent);
   --random-gradient: linear-gradient(135deg, #7c5cff 0%, #22d3ee 50%, #a78bfa 100%);
+}
+
+@media (min-width: 720px) {
+  :root,
+  [data-theme='dark'],
+  [data-theme='light'] {
+    --header-offset: 4.25rem;
+  }
 }
 
 [data-theme='light'] {

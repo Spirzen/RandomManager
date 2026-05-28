@@ -1,26 +1,31 @@
 .nav {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.35rem;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  width: fit-content;
-  max-width: 100%;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: stretch;
+  gap: 0.125rem;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
 }
 
 .tab {
   position: relative;
-  padding: 0.65rem 1.25rem;
-  border-radius: 12px;
+  flex: 1 1 0;
+  min-width: 4.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
+  line-height: 1.25;
   color: var(--text-muted);
-  transition: color 0.2s;
-  z-index: 1;
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.15s;
 }
 
 .tab[aria-selected='true'] {
@@ -29,25 +34,34 @@
 
 .tab:hover:not([aria-selected='true']) {
   color: var(--text);
+  background: var(--accent-soft);
 }
 
-.pill {
+.indicator {
   position: absolute;
   inset: 0;
   background: var(--bg-card);
   border: 1px solid var(--border-strong);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+  border-radius: 8px;
   z-index: -1;
 }
 
-.tabContent {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+.label {
   position: relative;
+  z-index: 1;
 }
 
-.icon {
-  font-size: 1.1rem;
+@media (min-width: 720px) {
+  .nav {
+    width: auto;
+    flex: 0 1 auto;
+    gap: 0.25rem;
+  }
+
+  .tab {
+    flex: 0 1 auto;
+    min-width: 5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
 }

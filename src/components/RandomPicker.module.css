@@ -62,12 +62,6 @@
   z-index: 1;
 }
 
-.dice {
-  position: relative;
-  z-index: 1;
-  font-size: 1.25rem;
-}
-
 .display {
   margin-top: 1.25rem;
   min-height: 120px;

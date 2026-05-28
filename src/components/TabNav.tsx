@@ -3,10 +3,10 @@ import { preloadCatalog } from '../lib/catalog';
 import type { CatalogKind } from '../types';
 import styles from './TabNav.module.css';
 
-const TABS: { id: CatalogKind; label: string; icon: string }[] = [
-  { id: 'movies', label: 'Кино', icon: '🎬' },
-  { id: 'games', label: 'Игры', icon: '🎮' },
-  { id: 'books', label: 'Книги', icon: '📚' },
+const TABS: { id: CatalogKind; label: string }[] = [
+  { id: 'movies', label: 'Кино' },
+  { id: 'games', label: 'Игры' },
+  { id: 'books', label: 'Книги' },
 ];
 
 interface TabNavProps {
@@ -32,17 +32,12 @@ export function TabNav({ active, onChange }: TabNavProps) {
           >
             {isActive && (
               <motion.span
-                layoutId="tab-pill"
-                className={styles.pill}
-                transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                layoutId="header-tab-indicator"
+                className={styles.indicator}
+                transition={{ type: 'spring', stiffness: 420, damping: 34 }}
               />
             )}
-            <span className={styles.tabContent}>
-              <span className={styles.icon} aria-hidden>
-                {tab.icon}
-              </span>
-              {tab.label}
-            </span>
+            <span className={styles.label}>{tab.label}</span>
           </button>
         );
       })}

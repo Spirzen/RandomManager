@@ -1,4 +1,5 @@
 import type { Book, CatalogItem, CatalogKind, FiltersState, Game, Movie } from '../types';
+import { sanitizeMovieGenres } from './movieGenres';
 
 export interface FilterOptions {
   genres: string[];
@@ -106,10 +107,17 @@ function buildFilterOptions(kind: CatalogKind, items: CatalogItem[]): FilterOpti
 }
 
 function buildBundle(kind: CatalogKind, items: CatalogItem[]): CatalogBundle {
+  const normalized =
+    kind === 'movies'
+      ? (items as Movie[]).map((m) => ({
+          ...m,
+          genres: sanitizeMovieGenres(m.genres),
+        }))
+      : items;
   return {
-    items,
-    options: buildFilterOptions(kind, items),
-    searchText: items.map(buildSearchText),
+    items: normalized,
+    options: buildFilterOptions(kind, normalized),
+    searchText: normalized.map(buildSearchText),
   };
 }
 
