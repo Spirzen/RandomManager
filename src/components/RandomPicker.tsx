@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CatalogItem, CatalogKind } from '../types';
 import { pickRandomIndex } from '../lib/catalog';
+import { ItemActions } from './ItemActions';
 import styles from './RandomPicker.module.css';
 
 const LABELS: Record<CatalogKind, { btn: string; empty: string }> = {
@@ -14,6 +15,14 @@ interface RandomPickerProps {
   items: CatalogItem[];
   poolIndices: number[];
   disabled?: boolean;
+  getState: (id: string) => {
+    favorite: boolean;
+    consumed: boolean;
+    inPlaylist: boolean;
+  };
+  onToggleFavorite: (id: string) => void;
+  onToggleConsumed: (id: string) => void;
+  onTogglePlaylist: (id: string) => void;
 }
 
 export function RandomPicker({
@@ -21,6 +30,10 @@ export function RandomPicker({
   items,
   poolIndices,
   disabled = false,
+  getState,
+  onToggleFavorite,
+  onToggleConsumed,
+  onTogglePlaylist,
 }: RandomPickerProps) {
   const [spinning, setSpinning] = useState(false);
   const [result, setResult] = useState<CatalogItem | null>(null);
@@ -100,6 +113,7 @@ export function RandomPicker({
   const labels = LABELS[kind];
   const canPick = poolIndices.length > 0 && !disabled;
   const genres = result?.genres ?? [];
+  const resultState = result ? getState(result.id) : null;
 
   return (
     <section className={styles.section} aria-label="Случайный выбор">
@@ -120,7 +134,7 @@ export function RandomPicker({
           {spinning && flashTitle && (
             <p className={styles.flash}>{flashTitle}</p>
           )}
-          {!spinning && result && (
+          {!spinning && result && resultState && (
             <div className={styles.reveal}>
               <span className={styles.badge}>Ваш выбор</span>
               <h3 className={styles.revealTitle}>{result.title}</h3>
@@ -141,6 +155,16 @@ export function RandomPicker({
                   ))}
                 </div>
               )}
+              <ItemActions
+                kind={kind}
+                favorite={resultState.favorite}
+                consumed={resultState.consumed}
+                inPlaylist={resultState.inPlaylist}
+                onToggleFavorite={() => onToggleFavorite(result.id)}
+                onToggleConsumed={() => onToggleConsumed(result.id)}
+                onTogglePlaylist={() => onTogglePlaylist(result.id)}
+                centered
+              />
             </div>
           )}
           {!spinning && !result && (

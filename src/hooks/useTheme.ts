@@ -4,6 +4,11 @@ export type Theme = 'dark' | 'light';
 
 const STORAGE_KEY = 'random-manager-theme';
 
+const THEME_COLORS: Record<Theme, string> = {
+  dark: '#0a0b0f',
+  light: '#f4f5f9',
+};
+
 function getInitialTheme(): Theme {
   if (typeof window === 'undefined') return 'dark';
   const stored = localStorage.getItem(STORAGE_KEY);
@@ -11,11 +16,18 @@ function getInitialTheme(): Theme {
   return 'dark';
 }
 
+function applyTheme(theme: Theme): void {
+  document.documentElement.setAttribute('data-theme', theme);
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', THEME_COLORS[theme]);
+}
+
 export function useTheme() {
   const [theme, setThemeState] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    applyTheme(theme);
     localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
@@ -27,3 +39,5 @@ export function useTheme() {
 
   return { theme, toggle, setTheme };
 }
+
+export { applyTheme, STORAGE_KEY as THEME_STORAGE_KEY };

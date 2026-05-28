@@ -1,17 +1,32 @@
 .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 1.15rem;
   transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   content-visibility: auto;
-  contain-intrinsic-size: auto 220px;
+  contain-intrinsic-size: auto 260px;
 }
 
 .card:hover {
   border-color: var(--border-strong);
   background: var(--bg-card-hover);
   box-shadow: var(--shadow);
+}
+
+.cardFavorite {
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.cardPlaylist {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.cardConsumed {
+  opacity: 0.88;
 }
 
 .head {
@@ -21,11 +36,51 @@
   gap: 0.75rem;
 }
 
+.titleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  flex: 1;
+}
+
 .title {
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.3;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.badges span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.badgeFavorite {
+  background: rgba(248, 113, 113, 0.15);
+  color: var(--danger);
+}
+
+.badgeConsumed {
+  background: rgba(52, 211, 153, 0.15);
+  color: var(--success);
+}
+
+.badgePlaylist {
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .rating {
@@ -88,4 +143,14 @@
 
 .storeLink:hover {
   text-decoration: underline;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer > div {
+  margin-top: 0;
 }

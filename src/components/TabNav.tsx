@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { preloadCatalog } from '../lib/catalog';
 import type { CatalogKind } from '../types';
 import styles from './TabNav.module.css';
@@ -15,6 +15,8 @@ interface TabNavProps {
 }
 
 export function TabNav({ active, onChange }: TabNavProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <nav className={styles.nav} role="tablist" aria-label="Раздел каталога">
       {TABS.map((tab) => {
@@ -30,13 +32,16 @@ export function TabNav({ active, onChange }: TabNavProps) {
             onMouseEnter={() => preloadCatalog(tab.id)}
             onFocus={() => preloadCatalog(tab.id)}
           >
-            {isActive && (
-              <motion.span
-                layoutId="header-tab-indicator"
-                className={styles.indicator}
-                transition={{ type: 'spring', stiffness: 420, damping: 34 }}
-              />
-            )}
+            {isActive &&
+              (reduceMotion ? (
+                <span className={styles.indicator} />
+              ) : (
+                <motion.span
+                  layoutId="header-tab-indicator"
+                  className={styles.indicator}
+                  transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+                />
+              ))}
             <span className={styles.label}>{tab.label}</span>
           </button>
         );

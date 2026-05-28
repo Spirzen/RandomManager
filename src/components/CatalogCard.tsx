@@ -1,10 +1,17 @@
 import { memo } from 'react';
 import type { Book, CatalogItem, CatalogKind, Game, Movie } from '../types';
+import { ItemActions } from './ItemActions';
 import styles from './CatalogCard.module.css';
 
 interface CatalogCardProps {
   item: CatalogItem;
   kind: CatalogKind;
+  favorite: boolean;
+  consumed: boolean;
+  inPlaylist: boolean;
+  onToggleFavorite: () => void;
+  onToggleConsumed: () => void;
+  onTogglePlaylist: () => void;
 }
 
 function Rating({ value }: { value: number }) {
@@ -31,14 +38,32 @@ function formatExtra(item: CatalogItem, kind: CatalogKind): string {
 export const CatalogCard = memo(function CatalogCard({
   item,
   kind,
+  favorite,
+  consumed,
+  inPlaylist,
+  onToggleFavorite,
+  onToggleConsumed,
+  onTogglePlaylist,
 }: CatalogCardProps) {
   const genres = item.genres ?? [];
   const extra = formatExtra(item, kind);
+  const hasStatus = favorite || consumed || inPlaylist;
 
   return (
-    <article className={styles.card}>
+    <article
+      className={`${styles.card} ${favorite ? styles.cardFavorite : ''} ${inPlaylist ? styles.cardPlaylist : ''} ${consumed ? styles.cardConsumed : ''}`}
+    >
       <header className={styles.head}>
-        <h3 className={styles.title}>{item.title}</h3>
+        <div className={styles.titleWrap}>
+          <h3 className={styles.title}>{item.title}</h3>
+          {hasStatus && (
+            <div className={styles.badges} aria-label="Статус">
+              {favorite && <span className={styles.badgeFavorite} title="Избранное">♥</span>}
+              {consumed && <span className={styles.badgeConsumed} title="Просмотрено">✓</span>}
+              {inPlaylist && <span className={styles.badgePlaylist} title="В плейлисте">▣</span>}
+            </div>
+          )}
+        </div>
         <Rating value={item.rating} />
       </header>
       <p className={styles.meta}>
@@ -77,6 +102,17 @@ export const CatalogCard = memo(function CatalogCard({
           ))}
         </ul>
       )}
+      <footer className={styles.footer}>
+        <ItemActions
+          kind={kind}
+          favorite={favorite}
+          consumed={consumed}
+          inPlaylist={inPlaylist}
+          onToggleFavorite={onToggleFavorite}
+          onToggleConsumed={onToggleConsumed}
+          onTogglePlaylist={onTogglePlaylist}
+        />
+      </footer>
     </article>
   );
 });

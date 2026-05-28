@@ -1,0 +1,71 @@
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.centered {
+  justify-content: center;
+  margin-top: 0.85rem;
+}
+
+.btn {
+  display: inline-flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0.65rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.icon {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.favoriteActive {
+  border-color: var(--danger);
+  background: rgba(248, 113, 113, 0.12);
+  color: var(--danger);
+}
+
+.consumedActive {
+  border-color: var(--success);
+  background: rgba(52, 211, 153, 0.12);
+  color: var(--success);
+}
+
+.playlistActive {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+@media (min-width: 640px) {
+  .btn {
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+    padding: 0.55rem;
+  }
+
+  .icon {
+    font-size: 1.25rem;
+  }
+}

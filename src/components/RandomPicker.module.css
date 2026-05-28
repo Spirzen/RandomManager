@@ -6,7 +6,7 @@
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
   overflow: hidden;
   position: relative;
 }
@@ -22,12 +22,13 @@
 .btn {
   position: relative;
   width: 100%;
-  padding: 1rem 1.5rem;
+  min-height: 3rem;
+  padding: 1rem 1.25rem;
   border-radius: 14px;
   background: var(--random-gradient);
   color: #fff;
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,6 +36,7 @@
   overflow: hidden;
   z-index: 1;
   box-shadow: 0 8px 32px var(--accent-glow);
+  touch-action: manipulation;
 }
 
 .btn:disabled {
@@ -142,4 +144,11 @@
   text-align: center;
   color: var(--text-faint);
   font-size: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btnGlow {
+    animation: none;
+    opacity: 0;
+  }
 }

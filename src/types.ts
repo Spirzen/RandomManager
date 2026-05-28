@@ -28,6 +28,8 @@ export interface Book extends BaseItem {
 
 export type CatalogItem = Movie | Game | Book;
 
+export type ConsumedFilter = 'all' | 'unseen' | 'seen';
+
 export interface FiltersState {
   search: string;
   genres: string[];
@@ -38,6 +40,9 @@ export interface FiltersState {
   developers: string[];
   platforms: string[];
   authors: string[];
+  favoriteOnly: boolean;
+  consumedFilter: ConsumedFilter;
+  playlistOnly: boolean;
 }
 
 export const emptyFilters = (): FiltersState => ({
@@ -50,4 +55,15 @@ export const emptyFilters = (): FiltersState => ({
   developers: [],
   platforms: [],
   authors: [],
+  favoriteOnly: false,
+  consumedFilter: 'all',
+  playlistOnly: false,
+});
+
+/** Сброс каталожных фильтров; пользовательские сохраняются при смене вкладки. */
+export const resetCatalogFilters = (prev: FiltersState): FiltersState => ({
+  ...emptyFilters(),
+  favoriteOnly: prev.favoriteOnly,
+  consumedFilter: prev.consumedFilter,
+  playlistOnly: prev.playlistOnly,
 });

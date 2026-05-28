@@ -11,9 +11,17 @@ interface CatalogGridProps {
   indices: number[];
   kind: CatalogKind;
   isPending?: boolean;
+  getState: (id: string) => {
+    favorite: boolean;
+    consumed: boolean;
+    inPlaylist: boolean;
+  };
+  onToggleFavorite: (id: string) => void;
+  onToggleConsumed: (id: string) => void;
+  onTogglePlaylist: (id: string) => void;
 }
 
-const ROW_ESTIMATE_PX = 228;
+const ROW_ESTIMATE_PX = 280;
 const OVERSCAN_ROWS = 3;
 
 export function CatalogGrid({
@@ -21,6 +29,10 @@ export function CatalogGrid({
   indices,
   kind,
   isPending = false,
+  getState,
+  onToggleFavorite,
+  onToggleConsumed,
+  onTogglePlaylist,
 }: CatalogGridProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const columnCount = useGridColumns(containerRef);
@@ -87,8 +99,19 @@ export function CatalogGrid({
                 {indices.slice(rowStart, rowEnd).map((itemIndex) => {
                   const item = items[itemIndex];
                   if (!item) return null;
+                  const state = getState(item.id);
                   return (
-                    <CatalogCard key={item.id} item={item} kind={kind} />
+                    <CatalogCard
+                      key={item.id}
+                      item={item}
+                      kind={kind}
+                      favorite={state.favorite}
+                      consumed={state.consumed}
+                      inPlaylist={state.inPlaylist}
+                      onToggleFavorite={() => onToggleFavorite(item.id)}
+                      onToggleConsumed={() => onToggleConsumed(item.id)}
+                      onTogglePlaylist={() => onTogglePlaylist(item.id)}
+                    />
                   );
                 })}
               </div>

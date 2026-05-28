@@ -1,4 +1,6 @@
 import type { Book, CatalogItem, CatalogKind, FiltersState, Game, Movie } from '../types';
+import type { UserLibrary } from './userLibrary';
+import { getItemState } from './userLibrary';
 import { sanitizeMovieGenres } from './movieGenres';
 
 export interface FilterOptions {
@@ -139,6 +141,7 @@ export function filterIndices(
   kind: CatalogKind,
   bundle: CatalogBundle,
   filters: FiltersState,
+  userLibrary?: UserLibrary,
 ): number[] {
   const { items, searchText } = bundle;
   const needle = filters.search.trim().toLowerCase();
@@ -205,6 +208,14 @@ export function filterIndices(
 
     if (kind === 'books' && authorSet) {
       if (!authorSet.has((item as Book).author)) continue;
+    }
+
+    if (userLibrary && (filters.favoriteOnly || filters.playlistOnly || filters.consumedFilter !== 'all')) {
+      const state = getItemState(userLibrary, kind, item.id);
+      if (filters.favoriteOnly && !state.favorite) continue;
+      if (filters.playlistOnly && !state.inPlaylist) continue;
+      if (filters.consumedFilter === 'seen' && !state.consumed) continue;
+      if (filters.consumedFilter === 'unseen' && state.consumed) continue;
     }
 
     result.push(i);

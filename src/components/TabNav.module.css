@@ -17,7 +17,8 @@
   position: relative;
   flex: 1 1 0;
   min-width: 4.5rem;
-  padding: 0.5rem 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
   border-radius: 8px;
   font-weight: 500;
   font-size: 0.875rem;

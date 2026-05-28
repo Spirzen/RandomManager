@@ -49,10 +49,10 @@ export function SearchableChipGroup({
       aria-label={label}
       aria-disabled={disabled}
     >
-      <div className={styles.legend}>
+      <h4 className={styles.legend}>
         {label}
         <span className={styles.legendCount}>({items.length})</span>
-      </div>
+      </h4>
       {needsSearch && (
         <input
           type="search"
