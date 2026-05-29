@@ -33,6 +33,10 @@ $env:GITHUB_PAGES_BASE="./"; npm run build
 
 Для репозитория `RandomManager` workflow уже подставляет `base: /RandomManager/`.
 
+## Android-приложение
+
+APK лежит в [`public/RandomManagerMobile.apk`](public/RandomManagerMobile.apk) и попадает в сборку как статический файл. На сайте в шапке есть ссылка «Скачать APK». Чтобы обновить билд, скопируйте свежий `.apk` из мобильного проекта в `public/`.
+
 ## Публикация на GitHub Pages
 
 1. Залейте репозиторий на GitHub.

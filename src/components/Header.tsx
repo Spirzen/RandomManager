@@ -5,6 +5,7 @@ import { TabNav } from './TabNav';
 import styles from './Header.module.css';
 
 const IT_UNIVERSE_URL = 'https://spirzen.ru';
+const APK_URL = `${import.meta.env.BASE_URL}RandomManagerMobile.apk`;
 
 interface HeaderProps {
   theme: Theme;
@@ -37,6 +38,17 @@ export function Header({
         </div>
 
         <div className={styles.actions}>
+          <a
+            className={styles.itLink}
+            href={APK_URL}
+            download="RandomManagerMobile.apk"
+            aria-label="Скачать приложение RandomManager для Android"
+          >
+            <span className={styles.itFull}>Скачать APK</span>
+            <span className={styles.itShort} aria-hidden>
+              APK
+            </span>
+          </a>
           <a
             className={styles.itLink}
             href={IT_UNIVERSE_URL}
